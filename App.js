@@ -5,7 +5,7 @@ export default function App() {
   return (
 		<View style={styles.body} >
 			<View>
-				<Text>Heading</Text>
+				<Text style={styles.heading} >Heading</Text>
 
 			</View>
 			<View>
@@ -30,6 +30,13 @@ const styles = {
 		padding: 20,
 		alignItems: 'center',
 
+
+	},
+	heading: {
+		fontSize: 30,
+		marginTop: 30,
+		fontWeight: 'bold',
+		
 
 	}
 
