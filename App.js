@@ -6,6 +6,7 @@ import { Text, View, TextInput,Button } from 'react-native';
 export default function App() {
 
 	const [text,setText] = useState('');
+	const [todos,setTodos] = useState([]);
 
 	const textChangeHandler = (value) => {
 		setText(value);
@@ -13,11 +14,21 @@ export default function App() {
 	};
 
 	const createTodoHandler = () => {
-		alert(text)
+
+		if(!text) {
+			return alert('Missing text!')
+		}
+		const newTodo = {
+			text: text,
+			isComplited: false,
+		};
+
+		setTodos(oldTodo => [...oldTodo,newTodo]);
+		setText('');
 	};
   return (
 		<View style={styles.body} >
-			<View style={{marginBottom: 20}} >
+			<View  >
 				<Text style={styles.heading} >Heading</Text>
 
 			</View>
@@ -49,6 +60,8 @@ const styles = {
 	body: {
 		padding: 20,
 		alignItems: 'center',
+		gap: 30,
+
 
 
 	},
