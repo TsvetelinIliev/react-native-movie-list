@@ -26,7 +26,7 @@ export default function App() {
 		const newTodo = {
 			id: lastTodoId + 1,
 			text: text,
-			isComplited: false,
+			isCompleted: false,
 		};
 
 		setTodos(oldTodo => [...oldTodo,newTodo]);
@@ -34,9 +34,15 @@ export default function App() {
 	};
 
 	const toggleTodoHandler = (todoId) => {
-		setTodos(todos => todos.map(todo => todo.id === todoId ? {...todo,isComplited: !isComplited} : todo));
+		setTodos(todos => todos.map(todo => todo.id === todoId ? { ...todo, isCompleted: !todo.isCompleted} : todo));
 
-	}
+	};
+
+	const deleteTodoHandler = (todoId) => {
+
+		setTodos(todos.filter(todo => todo.id !== todoId));
+
+	};
   return (
 		<View style={styles.body} >
 			<View  >
@@ -57,7 +63,7 @@ export default function App() {
 			</View>
 			<View style={{ width: '100%' ,}} >
 				<Text>
-					{todos.map(todo => <TodoItem key={todo.id} {...todo} onDone={toggleTodoHandler} />)}
+					{todos.map(todo => <TodoItem key={todo.id} {...todo} onDone={toggleTodoHandler} onDelete={deleteTodoHandler} />)}
 				</Text>
 
 			</View>
