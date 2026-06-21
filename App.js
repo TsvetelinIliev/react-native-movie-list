@@ -34,7 +34,7 @@ export default function App() {
 	};
 
 	const toggleTodoHandler = (todoId) => {
-		alert(todoId);
+		setTodos(todos => todos.map(todo => todo.id === todoId ? {...todo,isComplited: !isComplited} : todo));
 
 	}
   return (
@@ -57,7 +57,7 @@ export default function App() {
 			</View>
 			<View style={{ width: '100%' ,}} >
 				<Text>
-					{todos.map(todo => <TodoItem key={todo.text} {...todo} onDone={toggleTodoHandler} />)}
+					{todos.map(todo => <TodoItem key={todo.id} {...todo} onDone={toggleTodoHandler} />)}
 				</Text>
 
 			</View>
