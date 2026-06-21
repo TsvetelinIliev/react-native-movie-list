@@ -8,8 +8,8 @@ export default function App() {
 
 	const [text,setText] = useState('');
 	const [todos,setTodos] = useState([
-		{isComplited: false,text: 'Go to bed'},
-		{isComplited: false,text: 'Make your bad'}
+		{id: 1,isComplited: false,text: 'Go to bed'},
+		{id: 2,isComplited: false,text: 'Make your bad'}
 	]);
 
 	const textChangeHandler = (value) => {
@@ -21,8 +21,10 @@ export default function App() {
 
 		if(!text) {
 			return alert('Missing text!')
-		}
+		};
+		const lastTodoId = todos[todos.length -1]?.id || 0;
 		const newTodo = {
+			id: lastTodoId + 1,
 			text: text,
 			isComplited: false,
 		};
@@ -30,6 +32,11 @@ export default function App() {
 		setTodos(oldTodo => [...oldTodo,newTodo]);
 		setText('');
 	};
+
+	const toggleTodoHandler = (todoId) => {
+		alert(todoId);
+
+	}
   return (
 		<View style={styles.body} >
 			<View  >
@@ -48,9 +55,9 @@ export default function App() {
 				<Button  title='Create' onPress={createTodoHandler} />
 
 			</View>
-			<View style={{width: '100%'}} >
+			<View style={{ width: '100%' ,}} >
 				<Text>
-					{todos.map(todo => <TodoItem key={todo.text} {...todo} />)}
+					{todos.map(todo => <TodoItem key={todo.text} {...todo} onDone={toggleTodoHandler} />)}
 				</Text>
 
 			</View>
