@@ -1,12 +1,16 @@
 
 import { useState } from 'react';
 import { Text, View, TextInput,Button } from 'react-native';
+import TodoItem from './components/TodoItem';
 
 
 export default function App() {
 
 	const [text,setText] = useState('');
-	const [todos,setTodos] = useState([]);
+	const [todos,setTodos] = useState([
+		{isComplited: false,text: 'Go to bed'},
+		{isComplited: false,text: 'Make your bad'}
+	]);
 
 	const textChangeHandler = (value) => {
 		setText(value);
@@ -44,8 +48,10 @@ export default function App() {
 				<Button  title='Create' onPress={createTodoHandler} />
 
 			</View>
-			<View>
-				<Text>View</Text>
+			<View style={{width: '100%'}} >
+				<Text>
+					{todos.map(todo => <TodoItem key={todo.text} {...todo} />)}
+				</Text>
 
 			</View>
 
