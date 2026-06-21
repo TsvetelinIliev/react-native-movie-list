@@ -37,6 +37,7 @@ export default function App() {
 				placeholder='Go to gym!'
 				value={text}
 				onChangeText={textChangeHandler}
+				onSubmitEditing={createTodoHandler}
 				
 				/>
 
@@ -78,6 +79,7 @@ const styles = {
 		justifyContent: 'space-between',
 		width: '100%',
 		borderRadius: 5,
+		
 
 
 	}
